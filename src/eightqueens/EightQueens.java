@@ -14,29 +14,17 @@ public class EightQueens {
         System.out.println("Please enter in the Y cordinate");
         int FirstY = input.nextInt();
 
-        //Creates an 8x8 chess board that holds strings
-        String[][] ChessBoard = new String[8][8];
+        CreateBoard Board = new CreateBoard();
+        Board.FillBoard();
 
-        //A loop to fill the 
-        //entire thing with asterixes
-        for (int i = 0; i < 8; i++) {
-            for (int y = 0; y < 8; y++) {
-                ChessBoard[i][y] = "*";
-
-            }
-        }
+        
+        
         //Puts down the first Queen
-        ChessBoard[FirstX][FirstY] = "Q";
+        Board.ChessBoard[FirstX][FirstY] = "Q";
 
 
 
-        //Print the whole thing out    
-        for (int i = 0; i < 8; i++) {
-            System.out.print("\n");
-            for (int y = 0; y < 8; y++) {
-                System.out.print(" " + ChessBoard[y][i]);
-            }
-        }
+        
 
 
     }
@@ -62,3 +50,15 @@ public class EightQueens {
  }
  return result;
  } */
+
+
+/*
+        //A loop to fill the 
+        //entire thing with asterixes
+        for (int i = 0; i < 8; i++) {
+            for (int y = 0; y < 8; y++) {
+                Board.ChessBoard[i][y] = "*";
+
+            }
+        }
+        */
