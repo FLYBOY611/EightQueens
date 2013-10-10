@@ -44,6 +44,7 @@ public class CreateBoard {
                 //test the next spot to put a Queen
                 if (IsAThreat(RowSpot, Ystart) == true) {
                     RowSpot++;
+                    //RowSpot++;
                 } else {
                     //If its not a threat then
                     //Place a Queen and do recursion
@@ -51,7 +52,7 @@ public class CreateBoard {
                     ChessBoard[RowSpot][Ystart] = "Q";
                     KeepGoing = PlaceAQueen(RowSpot, Ystart + 1);
 
-                    /*     //BACKTRACKING
+                     /*    //BACKTRACKING
                      //Remove the Queen 
                      if (KeepGoing == true) {                       
                      ChessBoard[RowSpot][Ystart] = "*";
@@ -77,10 +78,11 @@ public class CreateBoard {
         //Test the diagonal threat trending upwards
         for (int i = 0; i < ChessBoard.length; i++) {
             if (row+i >= ChessBoard.length
-                    || column+i >= ChessBoard.length){
+                    || column-i < 0){
+                System.out.println("broken!");
                 break;
             }
-            if (ChessBoard[row+i][column+i].equals("Q")) {
+            if (ChessBoard[row+i][column-i].equals("Q")) {
                 return true;
             }
         }
