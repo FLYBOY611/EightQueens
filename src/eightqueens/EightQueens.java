@@ -8,6 +8,8 @@ public class EightQueens {
 
     public static void main(String[] args) {
         CreateBoard Board = new CreateBoard();
+        
+        //Fills the board then jumps into placing queens
         Board.FillBoard();
         
         //Board.PlaceAQueen(Xstart, Ystart);
@@ -15,10 +17,6 @@ public class EightQueens {
         
         //Prints the board out
         Board.PrintBoard();
-        
-        
-
-
 
     }
 

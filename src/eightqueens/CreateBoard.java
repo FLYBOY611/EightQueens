@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package eightqueens;
 
 import java.util.Scanner;
@@ -29,7 +25,7 @@ public class CreateBoard {
         //Puts down the first Queen
         ChessBoard[FirstX][FirstY] = "Q";
 
-        PlaceAQueen(FirstX, FirstY);
+        PlaceAQueen(0, 0);
 
 
     }
@@ -84,7 +80,18 @@ public class CreateBoard {
                     || column+i >= ChessBoard.length){
                 break;
             }
-            if (ChessBoard[row+i][column+i] == "Q") {
+            if (ChessBoard[row+i][column+i].equals("Q")) {
+                return true;
+            }
+        }
+        
+        //Test the diagonal threat trending downwards
+        for (int i = ChessBoard.length; i > 0; i--) {
+            if (row-i < 0
+                    || column-i < 0){
+                break;
+            }
+            if (ChessBoard[row-i][column-i].equals("Q")) {
                 return true;
             }
         }
