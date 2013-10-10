@@ -32,31 +32,43 @@ public class CreateBoard {
 
     //The start of our recursion
     public boolean PlaceAQueen(int Xstart, int Ystart) {
-        //int CountStart = Xstart;
-        int CurrentColumn = 0;
+        int VerticalSpot = 0;
         boolean KeepGoing = false;
 
-        if (Ystart == ChessBoard.length) {
+        if (Xstart == ChessBoard.length) {
             return true;
         } else {
-            while (CurrentColumn < ChessBoard.length && !KeepGoing == true) {
-                //If the spot is a threat, 
-                //test the next spot to put a Queen
-                if (IsAThreat(CurrentColumn, Ystart) == true) {
-                    //Ystart++;
-                    CurrentColumn++;
+            while (VerticalSpot < ChessBoard.length && !KeepGoing == true) {
+                //If the board detects the column has a threat
+                if (ColumnThreat(Xstart, VerticalSpot) == true) {
+                    //We skip that column and return the vertical to zero
+                    //VerticalSpot=0;
+                    KeepGoing = PlaceAQueen(Xstart + 1, VerticalSpot);
+                    break;
+                } 
+                //Test the other threat methods
+                if (IsAThreat(Xstart, VerticalSpot) == true) {
+                    //Iterate up the vertical to test the other threats
+                    VerticalSpot++;
                 } else {
-                    //If its not a threat then
-                    //Place a Queen and do recursion
-                    //to try and place another Queen in next column.
-                    ChessBoard[Xstart][CurrentColumn] = "Q";
-                    KeepGoing = PlaceAQueen(CurrentColumn, Ystart + 1);
+                    //If its not a threat then place a Queen                   
+                    ChessBoard[Xstart][VerticalSpot] = "Q";
+                    //Move to the next column, reset vertical to zero
+                    //VerticalSpot = 0;
+                    KeepGoing = PlaceAQueen(Xstart + 1, VerticalSpot);
 
-               /*    //BACKTRACKING
+                    /*    //BACKTRACKING
+                     * CONCEPT:
+                     * 
+                     * Jump back a column, find that queen and erase it
+                     * then continue on scanning for safe spots in that column
+                     * BUT starting from the previous position where the old
+                     * Queen was....
+                     * 
                      //Remove the Queen 
                      if (KeepGoing == true) {                       
-                     ChessBoard[CurrentColumn][Ystart] = "*";
-                     CurrentColumn++;
+                     ChessBoard[Xstart][VerticalSpot] = "*";
+                     VerticalSpot++;
                      }  */
 
                 }
@@ -65,23 +77,25 @@ public class CreateBoard {
         }
     }
 
-    //Determine if the new piece threatens another
-    public boolean IsAThreat(int row, int column) {
-
-//Test the row threat
+    public boolean ColumnThreat(int row, int column) {
+        //Test the column threat
         for (int i = 0; i < ChessBoard.length; i++) {
             if (ChessBoard[row][i].equals("Q")) {
                 return true;
             }
         }
+        return false;
+    }
 
-//Test the column threat
+    //Determine if the new piece threatens another
+    public boolean IsAThreat(int row, int column) {
+
+//Test the row threat
         for (int i = 0; i < ChessBoard.length; i++) {
             if (ChessBoard[i][column].equals("Q")) {
                 return true;
             }
         }
-
 
 //Test the diagonal threat trending upward right
         for (int i = 0; i < ChessBoard.length; i++) {
@@ -150,3 +164,15 @@ public class CreateBoard {
  if q[i] - q[n] equals n - i: two queens are on same major diagonal
  if q[n] - q[i] equals n - i: two queens are on same minor diagonal 
  */
+
+/*CURRENT DESIGN PLANS:
+ * 
+ * Start the program running at space 0,0
+ * Check the current column to see if a threat exists
+ * If yes, then call recursion and skip that column because only one 
+ * Queen per column may exist. If no then check all other methods of threat.
+ * If another threat THAT IS NOT A COLUMN TYPE exists then iterate up the
+ * column checking each space. If a perfectly clean space is found then place
+ * the Queen and call recursion to move one column over
+ */
+ 
