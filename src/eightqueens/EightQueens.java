@@ -4,40 +4,30 @@ import java.util.Scanner;
 
 public class EightQueens {
 
+    
+
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.println("Welcome to the Eight Queens program!");
-        System.out.println("Please enter in the X cordinate"
-                + " of the first Queen");
-        int FirstX = input.nextInt();
-        System.out.println("Please enter in the Y cordinate");
-        int FirstY = input.nextInt();
-
         CreateBoard Board = new CreateBoard();
         Board.FillBoard();
-
+        
+        //Board.PlaceAQueen(Xstart, Ystart);
         
         
-        //Puts down the first Queen
-        Board.ChessBoard[FirstX][FirstY] = "Q";
-
-
-
+        //Prints the board out
+        Board.PrintBoard();
         
+        
+
 
 
     }
 
-    /*
-     Hint: to determine whether setting q[n] = i conflicts with q[0] through q[n-1] 
-     if q[i] equals q[n]: two queens are placed in the same column
-     if q[i] - q[n] equals n - i: two queens are on same major diagonal
-     if q[n] - q[i] equals n - i: two queens are on same minor diagonal 
-     */
-    public void PrintItOut() {
-    }
+    
+
+    
 }
+
+
 /*
  //Lets try a basic recursive loop
  //This loop returns the factorial sum of every number less than it
