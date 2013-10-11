@@ -64,8 +64,9 @@ public class CreateBoard {
                      * then continue on scanning for safe spots in that column
                      * BUT starting from the previous position where the old
                      * Queen was....
-                     * 
-                     //Remove the Queen 
+                     * */
+                    
+                   /*  //Remove the Queen 
                      if (KeepGoing == true) {                       
                      ChessBoard[Xstart][VerticalSpot] = "*";
                      VerticalSpot++;
