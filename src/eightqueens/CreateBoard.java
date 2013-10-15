@@ -16,6 +16,7 @@ public class CreateBoard {
             }
         }
         Scanner input = new Scanner(System.in);
+        System.out.println("REMEMBER: all values must be 0-7");
         System.out.println("Please enter in the X cordinate"
                 + " of the first Queen");
         int FirstX = input.nextInt();
@@ -66,11 +67,11 @@ public class CreateBoard {
                      * Queen was....
                      * */
                     
-                   /*  //Remove the Queen 
-                     if (KeepGoing == true) {                       
+                     //Remove the Queen 
+                     if (KeepGoing == false) {                       
                      ChessBoard[Xstart][VerticalSpot] = "*";
                      VerticalSpot++;
-                     }  */
+                     }  
 
                 }
             }
