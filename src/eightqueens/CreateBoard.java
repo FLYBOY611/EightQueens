@@ -4,10 +4,9 @@ import java.util.Scanner;
 
 public class CreateBoard {
     //Creates an 8x8 chess board that holds strings
-
     String[][] ChessBoard = new String[8][8];
 
-    //Create the board and fill it with asterixes 
+    //Fill the board with asterixes 
     public void FillBoard() {
         for (int i = 0; i < 8; i++) {
             for (int y = 0; y < 8; y++) {
@@ -25,7 +24,7 @@ public class CreateBoard {
 
         //Puts down the first Queen
         ChessBoard[FirstX][FirstY] = "Q";
-
+        //Start the program at 0,0
         PlaceAQueen(0, 0);
 
 
@@ -43,10 +42,9 @@ public class CreateBoard {
                 //If the board detects the column has a threat
                 if (ColumnThreat(Xstart, VerticalSpot) == true) {
                     //We skip that column and return the vertical to zero
-                    //VerticalSpot=0;
                     KeepGoing = PlaceAQueen(Xstart + 1, VerticalSpot);
                     break;
-                } 
+                }
                 //Test the other threat methods
                 if (IsAThreat(Xstart, VerticalSpot) == true) {
                     //Iterate up the vertical to test the other threats
@@ -55,23 +53,13 @@ public class CreateBoard {
                     //If its not a threat then place a Queen                   
                     ChessBoard[Xstart][VerticalSpot] = "Q";
                     //Move to the next column, reset vertical to zero
-                    //VerticalSpot = 0;
                     KeepGoing = PlaceAQueen(Xstart + 1, VerticalSpot);
 
-                    /*    //BACKTRACKING
-                     * CONCEPT:
-                     * 
-                     * Jump back a column, find that queen and erase it
-                     * then continue on scanning for safe spots in that column
-                     * BUT starting from the previous position where the old
-                     * Queen was....
-                     * */
-                    
-                     //Remove the Queen 
-                     if (KeepGoing == false) {                       
-                     ChessBoard[Xstart][VerticalSpot] = "*";
-                     VerticalSpot++;
-                     }  
+                    //Remove the Queen 
+                    if (KeepGoing == false) {
+                        ChessBoard[Xstart][VerticalSpot] = "*";
+                        VerticalSpot++;
+                    }
 
                 }
             }
@@ -79,8 +67,9 @@ public class CreateBoard {
         }
     }
 
+    //Test the column threat
     public boolean ColumnThreat(int row, int column) {
-        //Test the column threat
+
         for (int i = 0; i < ChessBoard.length; i++) {
             if (ChessBoard[row][i].equals("Q")) {
                 return true;
@@ -92,18 +81,17 @@ public class CreateBoard {
     //Determine if the new piece threatens another
     public boolean IsAThreat(int row, int column) {
 
-//Test the row threat
+        //Test the row threat
         for (int i = 0; i < ChessBoard.length; i++) {
             if (ChessBoard[i][column].equals("Q")) {
                 return true;
             }
         }
 
-//Test the diagonal threat trending upward right
+        //Test the diagonal threat trending upward right
         for (int i = 0; i < ChessBoard.length; i++) {
             if (row + i >= ChessBoard.length
                     || column + i >= ChessBoard.length) {
-                // System.out.println("broken!");
                 break;
             }
             if (ChessBoard[row + i][column + i].equals("Q")) {
@@ -111,11 +99,10 @@ public class CreateBoard {
             }
         }
 
-//Test the diagonal threat trending downward right
+        //Test the diagonal threat trending downward right
         for (int i = 0; i < ChessBoard.length; i++) {
             if (row + i >= ChessBoard.length
                     || column - i < 0) {
-                // System.out.println("broken!");
                 break;
             }
             if (ChessBoard[row + i][column - i].equals("Q")) {
@@ -123,7 +110,7 @@ public class CreateBoard {
             }
         }
 
-//Test the diagonal threat trending upward left
+        //Test the diagonal threat trending upward left
         for (int i = 0; i < ChessBoard.length; i++) {
             if (row - i < 0
                     || column + i >= ChessBoard.length) {
@@ -134,7 +121,7 @@ public class CreateBoard {
             }
         }
 
-//Test the diagonal threat trending downward left
+        //Test the diagonal threat trending downward left
         for (int i = 0; i < ChessBoard.length; i++) {
             if (row - i < 0
                     || column - i < 0) {
@@ -159,14 +146,6 @@ public class CreateBoard {
         }
     }
 }
-
-/*
- Hint: to determine whether setting q[n] = i conflicts with q[0] through q[n-1] 
- if q[i] equals q[n]: two queens are placed in the same column
- if q[i] - q[n] equals n - i: two queens are on same major diagonal
- if q[n] - q[i] equals n - i: two queens are on same minor diagonal 
- */
-
 /*CURRENT DESIGN PLANS:
  * 
  * Start the program running at space 0,0
@@ -177,4 +156,3 @@ public class CreateBoard {
  * column checking each space. If a perfectly clean space is found then place
  * the Queen and call recursion to move one column over
  */
- 

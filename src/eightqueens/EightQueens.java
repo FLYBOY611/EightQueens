@@ -10,10 +10,7 @@ public class EightQueens {
         CreateBoard Board = new CreateBoard();
         
         //Fills the board then jumps into placing queens
-        Board.FillBoard();
-        
-        //Board.PlaceAQueen(Xstart, Ystart);
-        
+        Board.FillBoard();        
         
         //Prints the board out
         Board.PrintBoard();
@@ -25,28 +22,3 @@ public class EightQueens {
     
 }
 
-
-/*
- //Lets try a basic recursive loop
- //This loop returns the factorial sum of every number less than it
- public static int sum(int num) {
- int result;
- if (num == 1) {
- result = 1;
- } else {
- result = num + sum(num - 1);
- }
- return result;
- } */
-
-
-/*
-        //A loop to fill the 
-        //entire thing with asterixes
-        for (int i = 0; i < 8; i++) {
-            for (int y = 0; y < 8; y++) {
-                Board.ChessBoard[i][y] = "*";
-
-            }
-        }
-        */
